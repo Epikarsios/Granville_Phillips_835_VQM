@@ -4,9 +4,9 @@ classdef Granville_Phillips_835_VQM < handle
     
     properties
         Current_Pressure;
+        Pressure_Units;
         
-        
-        
+        Serial_Object;
         Log_Pressure;
          
     end
@@ -28,6 +28,11 @@ classdef Granville_Phillips_835_VQM < handle
             fprintf(Serial_Obj,'outp on');
             obj.Current_Pressure = str2double(query(Serial_Obj, 'meas:pres?'));
 
+        end
+        
+        function Get_Pressure_Units(obj)
+            query(obj.Serial_Object,'CONF:units?' )
+        
         end
         function Add_Log_Data(obj)
            obj.Log_Pressure{end+1} = obj.Current_Pressure; 
